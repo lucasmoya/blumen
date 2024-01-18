@@ -185,5 +185,3 @@ function borrarElementos() {
         reiniciarPedido(mesaSeleccionada);
     }
 }
-
-
