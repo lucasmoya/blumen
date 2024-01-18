@@ -8,6 +8,15 @@
       margin: 20px;
   }
 
+  #logo {
+    /*position: absolute;*/
+    top: 10px; /* Ajusta según sea necesario */
+    left: 10px; /* Ajusta según sea necesario */
+    width: 100px; /* Ajusta según sea necesario */
+    height: auto;
+    margin-bottom: 20px;
+  }
+
   .menu-section {
       float: left;
       margin-right: 20px;
@@ -60,6 +69,7 @@
       border: 1px solid #ccc;
       display: inline-block;
       margin-right: 5px;
+      margin-bottom: 3px;
   }        
 
   .mesa-tab-selected {
