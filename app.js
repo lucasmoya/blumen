@@ -122,7 +122,7 @@ async function generarRecibo() {
                             margin: [10, 0, 10, 0],
                         }
                     ],
-                    margin: [160, 0, 150, 0],
+                    margin: [165, 0, 150, 0],
                 },
             ],
             styles: {
