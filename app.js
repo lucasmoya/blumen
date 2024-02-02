@@ -1,18 +1,16 @@
-let pedidos = {}; // Un objeto para almacenar los pedidos de cada mesa
+let pedidos = {};
 let mesaSeleccionada = 1;
 
 function mostrarSeccion(seccion) {
-    // Oculta todas las secciones
+
     const secciones = document.querySelectorAll('.menu-section');
     secciones.forEach(sec => sec.style.display = 'none');
 
-    // Muestra la sección seleccionada
     const seccionSeleccionada = document.getElementById(seccion);
     if (seccionSeleccionada) {
         seccionSeleccionada.style.display = 'block';
     }
 
-    // Actualiza las clases de estilo de las pestañas
     const tabs = document.querySelectorAll('.tab');
     tabs.forEach(tab => tab.classList.remove('tab-selected'));
     event.currentTarget.classList.add('tab-selected');
@@ -25,10 +23,8 @@ function seleccionarMesa(numeroMesa) {
     const selectedTab = document.querySelector(`.mesa-tab:nth-child(${numeroMesa})`);
     selectedTab.classList.add('mesa-tab-selected');
 
-    // Actualiza la mesa seleccionada
     mesaSeleccionada = numeroMesa;
 
-    // Si no hay pedidos para esta mesa, inicializa el objeto
     if (!pedidos[numeroMesa]) {
         pedidos[numeroMesa] = [];
     }
@@ -72,7 +68,6 @@ async function generarRecibo() {
         const ahora = new Date();
         const fechaHora = `${ahora.toLocaleDateString('es-ES')} ${ahora.getHours()}:${ahora.getMinutes()}:${ahora.getSeconds()}`;
 
-        // Calcular subtotal, propina sugerida y total
         const subtotal = calcularTotal(mesaActual);
         const propinaSugerida = subtotal * 0.1; // 10% de propina
         const total = subtotal + propinaSugerida;
@@ -161,17 +156,15 @@ async function generarRecibo() {
 
         pdfMake.createPdf(content, options).download(`recibo_mesa_${mesaSeleccionada}.pdf`);
 
-        // Limpiar la boleta de la mesa seleccionada
         reiniciarPedido(mesaSeleccionada);
     }
 }
 
 
 function reiniciarPedido(numeroMesa) {
-    // Reinicia el objeto de pedidos para la mesa seleccionada
+
     pedidos[numeroMesa] = [];
 
-    // Actualiza la boleta después de reiniciar el pedido
     actualizarBoleta();
 }
 
@@ -185,4 +178,5 @@ function borrarElementos() {
         reiniciarPedido(mesaSeleccionada);
     }
 }
+
 
