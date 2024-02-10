@@ -1,6 +1,27 @@
 let pedidos = {};
 let mesaSeleccionada = 1;
 
+const nombreMesas = {
+    1: 'Mesa 1',
+    2: 'Mesa 2',
+    3: 'Mesa 3',
+    4: 'Mesa 4',
+    5: 'Mesa 5',
+    6: 'Mesa 6',
+    7: 'Habitación 1',
+    8: 'Habitación 2',
+    9: 'Habitación 3',
+    10: 'Habitación 4',
+    11: 'Habitación 5A',
+    12: 'Habitación 5B',
+    13: 'Habitación 6',
+    14: 'Habitación 7',
+    15: 'Habitación 8',
+    16: 'Habitación 9',
+    17: 'Habitación 10',
+    18: 'Habitación 11',
+};
+
 function mostrarSeccion(seccion) {
 
     const secciones = document.querySelectorAll('.menu-section');
@@ -29,6 +50,14 @@ function seleccionarMesa(numeroMesa) {
         pedidos[numeroMesa] = [];
     }
 
+    // Verificar si la mesa actual tiene contenido y aplicar estilo en consecuencia
+    const mesaActual = pedidos[mesaSeleccionada];
+    if (mesaActual && mesaActual.length > 0) {
+        selectedTab.classList.add('mesa-tab-has-content');
+    } else {
+        selectedTab.classList.remove('mesa-tab-has-content');
+    }
+
     actualizarBoleta();
 }
 
@@ -43,6 +72,9 @@ function addItem(nombre, precio) {
     }
 
     actualizarBoleta();
+
+    const selectedTab = document.querySelector(`.mesa-tab:nth-child(${mesaSeleccionada})`);
+    selectedTab.classList.add('mesa-tab-has-content');
 }
 
 function actualizarBoleta() {
@@ -77,7 +109,7 @@ async function generarRecibo() {
                 {
                     stack: [
                         { text: `Blumen Café & Mar`, style: 'header' },
-                        { text: `Mesa: ${mesaSeleccionada}`, style: 'fechaHora' },
+                        { text: `${nombreMesas[mesaSeleccionada]}`, style: 'fechaHora' },
                         { text: `${fechaHora}`, style: 'fechaHora' },
                         {
                             table: {
@@ -158,6 +190,8 @@ async function generarRecibo() {
 
         reiniciarPedido(mesaSeleccionada);
     }
+    const selectedTab = document.querySelector(`.mesa-tab:nth-child(${mesaSeleccionada})`);
+    selectedTab.classList.remove('mesa-tab-has-content');
 }
 
 
