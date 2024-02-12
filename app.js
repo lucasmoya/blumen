@@ -84,7 +84,27 @@ function seleccionarMesa(numeroMesa) {
         selectedTab.classList.remove('mesa-tab-has-content');
     }
 
+    // Actualizar el número de mesa en el DOM
+    const numeroMesaActualElement = document.getElementById("numero-mesa-actual");
+    numeroMesaActualElement.textContent = nombreMesas[mesaSeleccionada];
+    numeroMesaActualElement.style.fontWeight = 'bold';
+
+    // Mostrar la sección mesa-inside
+    document.querySelector('.mesa-tabs').style.display = 'none';
+    document.querySelector('.mesa-inside').style.display = 'block';
+
+    // Actualizar la boleta al cambiar de mesa
     actualizarBoleta();
+}
+
+
+function cambiarMesa() {
+    // Lógica para cambiar la mesa si es necesario
+    // ...
+
+    // Después de realizar la lógica, muestra mesa-tabs y oculta mesa-inside
+    document.querySelector('.mesa-tabs').style.display = 'flex'; // Cambia 'block' a 'flex'
+    document.querySelector('.mesa-inside').style.display = 'none';
 }
 
 function addItem(nombre, precio) {

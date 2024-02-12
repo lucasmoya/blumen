@@ -44,7 +44,11 @@
         <div class="mesa-tab" onclick="seleccionarMesa(18)">Habitación 11</div>
     </div>
 
-    <div class="mesa-inside">
+    <div class="mesa-inside hidden">
+      <p id="mesa-actual"><span id="numero-mesa-actual"></span></p>
+      <button onclick="cambiarMesa()" class="cambiar-mesa">
+        <img src="atras.svg" alt="Atras" style="width: 15px; height: 15px;">
+      </button>
       <div class="seleccion-productos">
         <div class="tabs">
             <div class="tab" onclick="mostrarSeccion('dulces')">Dulces</div>
@@ -138,7 +142,6 @@
       </div>
 
       <div id="boleta">
-          <h2>Items</h2>
           <ul id="pedido-list"></ul>
           <p>Total: $<span id="total">0</span></p>
           <button id="generar-boleta" onclick="generarRecibo()">
