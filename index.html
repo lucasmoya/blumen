@@ -10,7 +10,19 @@
     <link rel="icon" href="favicon-32x32.png" type="image/png">
 </head>
 <body>
+
+  <div class="login-container">
+    <div class="login-form">
+        <img id="logo" src="https://www.blumenhotel.cl/images/blumen-mobile.png" alt="Logo Blumen POS">
+        <input type="text" placeholder="username" id="username" required onkeydown="handleKeyDown(event)">
+        <input type="password" placeholder="password" id="password" required onkeydown="handleKeyDown(event)">
+        <button onclick="authenticate()">login</button>
+    </div>
+  </div>
+  
+  <div id="pos-container" class="hidden">
     <img id="logo" src="https://www.blumenhotel.cl/images/blumen-mobile.png" alt="Logo Blumen POS">
+  
     <div class="mesa-tabs">
         <div class="mesa-tab" onclick="seleccionarMesa(1)">Mesa 1</div>
         <div class="mesa-tab" onclick="seleccionarMesa(2)">Mesa 2</div>
@@ -32,93 +44,115 @@
         <div class="mesa-tab" onclick="seleccionarMesa(18)">Habitación 11</div>
     </div>
 
+    <div class="mesa-inside">
+      <div class="seleccion-productos">
+        <div class="tabs">
+            <div class="tab" onclick="mostrarSeccion('dulces')">Dulces</div>
+            <div class="tab" onclick="mostrarSeccion('salado')">Salado</div>
+            <div class="tab" onclick="mostrarSeccion('tapas_mar')">Tapas & Mar</div>
+            <div class="tab" onclick="mostrarSeccion('cafe')">Café</div>
+            <div class="tab" onclick="mostrarSeccion('barra')">Barra</div>
+            <div class="tab" onclick="mostrarSeccion('desayunos')">Desayunos</div>
+            <div class="tab" onclick="mostrarSeccion('extra')">
+              <img src="plus.svg" alt="Ingresar" style="width: 12px; height: 12px;">
+            </div>
+        </div>
 
-    <div class="tabs">
-        <div class="tab" onclick="mostrarSeccion('dulces')">Dulces</div>
-        <div class="tab" onclick="mostrarSeccion('salado')">Salado</div>
-        <div class="tab" onclick="mostrarSeccion('tapas_mar')">Tapas & Mar</div>
-        <div class="tab" onclick="mostrarSeccion('cafe')">Café</div>
-        <div class="tab" onclick="mostrarSeccion('barra')">Barra</div>
+        <div id="dulces" class="menu-section">
+          <div class="item" onclick="addItem('Media luna', 1600)">Media luna - $1.600</div>
+          <div class="item" onclick="addItem('Muffin berries', 1800)">Muffin arándano - $1.800</div>
+          <div class="item" onclick="addItem('Muffin chocolate', 2000)">Muffin chocolate - $2.000</div>
+          <div class="item" onclick="addItem('Brownie', 2000)">Brownie - $2.000</div>
+          <div class="item" onclick="addItem('Brownie con helado', 3000)">Brownie con helado - $3.000</div>
+          <div class="item" onclick="addItem('Pie de limón', 3800)">Pie de limón - $3.800</div>
+          <div class="item" onclick="addItem('Kuchen frambuesa', 4000)">Kuchen frambuesa - $4.000</div>
+          <div class="item" onclick="addItem('Kuchen manzana', 3800)">Kuchen manzana - $3.800</div>
+          <div class="item" onclick="addItem('Kuchen nuez', 3600)">Kuchen nuez - $3.600</div>
+          <div class="item" onclick="addItem('Tiramisú', 4100)">Tiramisú - $4.100</div>
+        </div>
 
+        <div id="salado" class="menu-section">
+          <div class="item" onclick="addItem('Paila de huevo', 3800)">Paila de huevo - $3.800</div>
+          <div class="item" onclick="addItem('Paila de huevo acompañada', 4500)">Paila de huevo acompañada - $4.500</div>
+          <div class="item" onclick="addItem('Baguette Napolitana', 5500)">Baguette Napolitana - $5.500</div>
+          <div class="item" onclick="addItem('Baguette Albahaca', 5800)">Baguette Albahaca - $5.800</div>
+          <div class="item" onclick="addItem('Baguette Serrano', 6600)">Baguette Serrano - $6.600</div>
+          <div class="item" onclick="addItem('Baguette Mechada', 7000)">Baguette Mechada - $7.000</div>
+          <div class="item" onclick="addItem('Pizza Salame', 11000)">Pizza Salame - $11.000</div>
+          <div class="item" onclick="addItem('Pizza Margarita', 10000)">Pizza Margarita - $10.000</div>
+          <div class="item" onclick="addItem('Pizza Serrano', 12500)">Pizza Serrano - $12.500</div>
+        </div>
+
+        <div id="tapas_mar" class="menu-section">
+          <div class="item" onclick="addItem('Carpaccio salmón', 13500)">Carpaccio salmón - $13.500</div>
+          <div class="item" onclick="addItem('Camarón apanado', 13000)">Camarón apanado - $13.000</div>
+          <div class="item" onclick="addItem('Macha a la parmesana', 12000)">Macha a la parmesana - $12.000</div>
+          <div class="item" onclick="addItem('Pastel de jaiba', 11000)">Pastel de jaiba - $11.000</div>
+          <div class="item" onclick="addItem('Cocktail de jaiba (2 tapas)', 5400)">Cocktail de jaiba (2 tapas) - $5.400</div>
+          <div class="item" onclick="addItem('Tabla Serrano', 17000)">Tabla Serrano - $17.000</div>
+          <div class="item" onclick="addItem('Tabla Queso', 16000)">Tabla Queso - $16.000</div>
+        </div>
+
+        <div id="cafe" class="menu-section">
+          <div class="item" onclick="addItem('Café expreso simple', 1800)">Café expreso simple - $1.800</div>
+          <div class="item" onclick="addItem('Café expreso doble', 2200)">Café expreso doble - $2.200</div>
+          <div class="item" onclick="addItem('Café americano', 2300)">Café americano - $2.300</div>
+          <div class="item" onclick="addItem('Chocolate caliente', 3100)">Chocolate caliente - $3.100</div>
+          <div class="item" onclick="addItem('Capuccino', 2900)">Capuccino - $2.900</div>
+          <div class="item" onclick="addItem('Macchiato', 2900)">Macchiato - $2.900</div>
+          <div class="item" onclick="addItem('Latte', 2900)">Latte - $2.900</div>
+          <div class="item" onclick="addItem('Latte helado', 3800)">Latte helado - $3.800</div>
+          <div class="item" onclick="addItem('Café helado', 4300)">Café helado - $4.300</div>
+          <div class="item" onclick="addItem('Té negro', 1800)">Té negro - $1.800</div>
+          <div class="item" onclick="addItem('Infusión variedades', 1700)">Infusión variedades - $1.700</div>
+          <div class="item" onclick="addItem('Agua 500cc.', 1800)">Agua 500cc. - $1.800</div>
+          <div class="item" onclick="addItem('Jugo natural', 2800)">Jugo natural - $2.800</div>
+          <div class="item" onclick="addItem('Bebida 300cc.', 2200)">Bebida 300cc. - $2.200</div>
+        </div>
+
+        <div id="barra" class="menu-section">
+          <div class="item" onclick="addItem('Cerveza lager 300cc.', 3600)">Cerveza lager 300cc. - $3.600</div>
+          <div class="item" onclick="addItem('Cerveza Corona 300cc.', 4000)">Cerveza Corona 300cc. - $4.000</div>
+          <div class="item" onclick="addItem('Cerveza Kunstmann 500cc.', 4700)">Cerveza Kunstmann 500cc. - $4.700</div>
+          <div class="item" onclick="addItem('Copa vino tinto', 4500)">Copa vino tinto - $4.500</div>
+          <div class="item" onclick="addItem('Copa vino blanco', 4500)">Copa vino blanco - $4.500</div>
+          <div class="item" onclick="addItem('Espumante', 4000)">Espumante - $4.000</div>
+          <div class="item" onclick="addItem('Pisco Sour', 4500)">Pisco Sour - $4.500</div>
+          <div class="item" onclick="addItem('Aperol', 5500)">Aperol - $5.500</div>
+          <div class="item" onclick="addItem('Ramazotti', 5600)">Ramazotti - $5.600</div>
+        </div>
+
+        <div id="desayunos" class="menu-section">
+          <div class="item" onclick="addItem('Desayuno InHouse', 10000)">Desayuno InHouse - $10.000</div>
+        </div>
+
+        <div id="extra" class="menu-section">
+          <div>
+              <input type="text" id="extraDescription" placeholder="Descripción">
+              <input type="number" id="extraAmount" placeholder="Monto">
+              <button onclick="agregarExtra()">
+                <img src="plusb.svg" alt="Ingresar" style="width: 20px; height: 20px;">
+              </button>
+          </div>
+        </div>
+      </div>
+
+      <div id="boleta">
+          <h2>Items</h2>
+          <ul id="pedido-list"></ul>
+          <p>Total: $<span id="total">0</span></p>
+          <button id="generar-boleta" onclick="generarRecibo()">
+            <img src="check.svg" alt="Generar boleta" style="width: 50px; height: 50px;">
+          </button>
+          <button id="borrar-boleta" onclick="borrarElementos()">
+            <img src="delete.svg" alt="Borrar elementos" style="width: 50px; height: 50px;">
+          </button>        
+      </div>
     </div>
-
-    <div id="dulces" class="menu-section">
-      <h3>Dulces</h3>
-      <div class="item" onclick="addItem('Media luna', 1600)">Media luna - $1.600</div>
-      <div class="item" onclick="addItem('Muffin berries', 1800)">Muffin berries (arándano / frambuesa) - $1.800</div>
-      <div class="item" onclick="addItem('Muffin chocolate', 2000)">Muffin chocolate - $2.000</div>
-      <div class="item" onclick="addItem('Brownie', 2000)">Brownie - $2.000</div>
-      <div class="item" onclick="addItem('Brownie', 3000)">Brownie con helado - $3.000</div>
-      <div class="item" onclick="addItem('Pie de limón', 3800)">Pie de limón - $3.800</div>
-      <div class="item" onclick="addItem('Kuchen frambuesa', 4000)">Kuchen frambuesa - $4.000</div>
-      <div class="item" onclick="addItem('Kuchen manzana', 3800)">Kuchen manzana - $3.800</div>
-      <div class="item" onclick="addItem('Kuchen nuez', 3600)">Kuchen nuez - $3.600</div>
-      <div class="item" onclick="addItem('Tiramisú', 4100)">Tiramisú - $4.100</div>
-    </div>
-
-    <div id="salado" class="menu-section">
-      <h3>Salado</h3>
-      <div class="item" onclick="addItem('Paila de huevo', 3800)">Paila de huevo - $3.800</div>
-      <div class="item" onclick="addItem('Paila de huevo acompañada', 4500)">Paila de huevo acompañada - $4.500</div>
-      <div class="item" onclick="addItem('Baguette Napolitana', 5500)">Baguette Napolitana - $5.500</div>
-      <div class="item" onclick="addItem('Baguette Albahaca', 5800)">Baguette Albahaca - $5.800</div>
-      <div class="item" onclick="addItem('Baguette Serrano', 6600)">Baguette Serrano - $6.600</div>
-      <div class="item" onclick="addItem('Baguette Mechada', 7000)">Baguette Mechada - $7.000</div>
-      <div class="item" onclick="addItem('Pizza Salame', 11000)">Pizza Salame - $11.000</div>
-      <div class="item" onclick="addItem('Pizza Margarita', 10000)">Pizza Margarita - $10.000</div>
-      <div class="item" onclick="addItem('Pizza Serrano', 12500)">Pizza Serrano - $12.500</div>
-    </div>
-
-    <div id="tapas_mar" class="menu-section">
-      <h3>Tapas & Mar</h3>
-      <div class="item" onclick="addItem('Carpaccio salmón', 13500)">Carpaccio salmón - $13.500</div>
-      <div class="item" onclick="addItem('Camarón apanado', 13000)">Camarón apanado - $13.000</div>
-      <div class="item" onclick="addItem('Macha a la parmesana', 12000)">Macha a la parmesana - $12.000</div>
-      <div class="item" onclick="addItem('Pastel de jaiba', 11000)">Pastel de jaiba - $11.000</div>
-      <div class="item" onclick="addItem('Cocktail de jaiba (2 tapas)', 5400)">Cocktail de jaiba (2 tapas) - $5.400</div>
-      <div class="item" onclick="addItem('Tabla Serrano', 17000)">Tabla Serrano - $17.000</div>
-      <div class="item" onclick="addItem('Tabla Queso', 16000)">Tabla Queso - $16.000</div>
-    </div>
-
-    <div id="cafe" class="menu-section">
-      <h3>Café</h3>
-      <div class="item" onclick="addItem('Café expreso simple', 1800)">Café expreso simple - $1.800</div>
-      <div class="item" onclick="addItem('Café expreso doble', 2200)">Café expreso doble - $2.200</div>
-      <div class="item" onclick="addItem('Café americano', 2300)">Café americano - $2.300</div>
-      <div class="item" onclick="addItem('Chocolate caliente', 3100)">Chocolate caliente - $3.100</div>
-      <div class="item" onclick="addItem('Capuccino', 2900)">Capuccino - $2.900</div>
-      <div class="item" onclick="addItem('Latte', 2900)">Latte - $2.900</div>
-      <div class="item" onclick="addItem('Café helado', 4300)">Café helado - $4.300</div>
-      <div class="item" onclick="addItem('Té negro', 1800)">Té negro - $1.800</div>
-      <div class="item" onclick="addItem('Infusión variedades', 1700)">Infusión variedades - $1.700</div>
-      <div class="item" onclick="addItem('Agua 500cc.', 1800)">Agua 500cc. - $1.800</div>
-      <div class="item" onclick="addItem('Jugo natural', 2800)">Jugo natural - $2.800</div>
-      <div class="item" onclick="addItem('Bebida 300cc.', 2200)">Bebida 300cc. - $2.200</div>
-    </div>
-
-    <div id="barra" class="menu-section">
-      <h3>Barra</h3>
-      <div class="item" onclick="addItem('Cerveza lager 300cc.', 3600)">Cerveza lager 300cc. - $3.600</div>
-      <div class="item" onclick="addItem('Cerveza Corona 300cc.', 4000)">Cerveza Corona 300cc. - $4.000</div>
-      <div class="item" onclick="addItem('Cerveza Kunstmann 500cc.', 4700)">Cerveza Kunstmann 500cc. - $4.700</div>
-      <div class="item" onclick="addItem('Copa vino tinto', 4500)">Copa vino tinto - $4.500</div>
-      <div class="item" onclick="addItem('Copa vino blanco', 4500)">Copa vino blanco - $4.500</div>
-      <div class="item" onclick="addItem('Espumante', 4000)">Espumante - $4.000</div>
-      <div class="item" onclick="addItem('Pisco Sour', 4500)">Pisco Sour - $4.500</div>
-      <div class="item" onclick="addItem('Aperol', 5500)">Aperol - $5.500</div>
-      <div class="item" onclick="addItem('Ramazotti', 5600)">Ramazotti - $5.600</div>
-    </div>
-
-    <div id="boleta">
-        <h2>Boleta Blumen Café & Mar</h2>
-        <ul id="pedido-list"></ul>
-        <p>Total: $<span id="total">0</span></p>
-        <button onclick="generarRecibo()">Generar Boleta</button>
-        <button onclick="borrarElementos()">Borrar Boleta</button>
-    </div>
-
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.68/pdfmake.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.68/vfs_fonts.js"></script>
-
+  </div>
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.68/pdfmake.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.68/vfs_fonts.js"></script>
+    
 </body>
 </html>

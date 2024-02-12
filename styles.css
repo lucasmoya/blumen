@@ -31,6 +31,32 @@ body {
     border: 1px solid #ccc;
 }
 
+.menu-section .item {
+  width: 120px; /* Ajusta el ancho deseado */
+  height: 80px; /* Ajusta la altura deseada */
+  display: inline-block;
+  margin: 5px;
+  padding: 10px;
+  box-sizing: border-box;
+  border: 1px solid #ccc;
+  cursor: pointer;
+  overflow: hidden;
+  font-size: 14px;
+  font-weight: 500; /* Pone la letra en negrita */
+}
+
+.menu-section .item p {
+  margin: 0;
+  font-size: 14px; /* Ajusta el tamaño del texto */
+  white-space: normal;
+}
+
+.menu-section .item:hover {
+  background-color: #dfdfdf; /* Cambia el color de fondo al hacer hover */
+  border-color: #999; /* Cambia el color del borde al hacer hover */
+}
+
+
 .tabs {
     margin-bottom: 10px;
 }
@@ -58,19 +84,32 @@ body {
     list-style: none;
     padding: 0;
 }
+
 .mesa-tabs {
-    margin-bottom: 10px;
+  margin-bottom: 10px;
+  display: flex;
+  flex-wrap: wrap; /* Asegura que los elementos se envuelvan cuando no hay suficiente espacio horizontal */
 }
 
 .mesa-tab {
-    cursor: pointer;
-    padding: 10px;
-    background-color: #ddd;
-    border: 1px solid #ccc;
-    display: inline-block;
-    margin-right: 5px;
-    margin-bottom: 3px;
-}        
+  cursor: pointer;
+  padding: 10px;
+  background-color: #ddd;
+  border: 1px solid #ccc;
+  display: flex; /* Utiliza flexbox */
+  align-items: center; /* Centra verticalmente el contenido */
+  justify-content: center; /* Centra horizontalmente el contenido */
+  margin-right: 5px;
+  margin-bottom: 3px;
+  text-align: center; /* Centra el texto horizontalmente */
+  border-radius: 3%;
+
+  width: 100px; /* Establece el ancho deseado */
+  height: 100px; /* Establece la altura igual al ancho para hacerlos cuadrados */
+  box-sizing: border-box; /* Asegura que el padding y el borde no afecten las dimensiones */
+}
+
+
 
 .mesa-tab-selected {
 border: 2px solid #000000; 
@@ -84,8 +123,120 @@ border: 2px solid #000000;
   border: 2px solid #000000;
 }
 
-/* Nuevos estilos para pestañas con contenido y seleccionadas */
 .mesa-tab-has-content {
-  background-color: #4CAF50; /* Verde */
+  background-color: rgb(30, 211, 123); /* Verde */
   color: #fff; /* Texto blanco */
+}
+
+/*EXTRA*/
+
+#extra {
+  margin-bottom: 20px;
+}
+
+#extra h3 {
+  margin-bottom: 20px;
+}
+
+#extra div {
+  display: flex;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+#extra input {
+  padding: 8px;
+  margin-right: 10px;
+}
+
+#extra button {
+  background-color: #c2c2c2;
+  color: white;
+  padding: 6px 6px 4px;
+  border: none;
+  cursor: pointer;
+  border-radius: 10%;
+
+}
+
+#extra button:hover {
+  background-color: #4CAF50;
+}
+
+/*LOGIN*/
+
+
+.login-container {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background: #FFFFFF;
+  max-width: 360px;
+  margin: 0 auto;
+  padding: 45px;
+  text-align: center;
+  box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.2), 0 5px 5px 0 rgba(0, 0, 0, 0.24);
+}
+
+.login-form input {
+  width: 100%;
+  padding: 15px;
+  margin: 0 0 15px;
+  box-sizing: border-box;
+  font-size: 14px;
+}
+
+.login-form button {
+  width: 100%;
+  padding: 15px;
+  background: #12c2d6;
+  color: #FFFFFF;
+  font-size: 14px;
+  cursor: pointer;
+}
+
+.login-form button:hover,
+.login-form button:active,
+.login-form button:focus {
+  background: #10aec0;
+}
+
+.hidden {
+  display: none;
+}
+/* boton */ 
+
+#boleta button {
+  /* Estilos generales para ambos botones */
+  width: 100px; /* Ajusta el tamaño según sea necesario */
+  height: 100px; /* Ajusta el tamaño según sea necesario */
+  padding: 10px; /* Ajusta el relleno según sea necesario */
+  font-size: 16px;
+  border-radius: 0px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+  font-weight: bold;
+}
+
+#boleta button#generar-boleta {
+  /* Estilos específicos para el botón "Generar Boleta" */
+  background-color: #4CAF50;
+  color: #fff;
+  border: none;
+}
+
+#boleta button#generar-boleta:hover {
+  background-color: #45a049;
+}
+
+#boleta button#borrar-boleta {
+  /* Estilos específicos para el botón "Borrar Boleta" */
+  background-color: #ff3333;
+  color: #fff;
+  border: none;
+}
+
+#boleta button#borrar-boleta:hover {
+  background-color: #e60000;
 }

@@ -1,6 +1,32 @@
 let pedidos = {};
 let mesaSeleccionada = 1;
 
+function handleKeyDown(event) {
+    // Verifica si la tecla presionada es "Enter"
+    if (event.key === 'Enter') {
+        // Ejecuta la función de autenticación
+        authenticate();
+    }
+}
+
+function authenticate() {
+    const usernameInput = document.getElementById('username');
+    const passwordInput = document.getElementById('password');
+
+    // Verificar las credenciales
+    const username = usernameInput.value;
+    const password = passwordInput.value;
+
+    if (username === 'admin' && password === 'blumen123') {
+        // Mostrar el sistema POS y ocultar el formulario de inicio de sesión
+        document.querySelector('.login-container').style.display = 'none';
+        document.getElementById('pos-container').classList.remove('hidden');
+    } else {
+        alert('Credenciales incorrectas. Inténtelo de nuevo.');
+    }
+}
+
+
 const nombreMesas = {
     1: 'Mesa 1',
     2: 'Mesa 2',
@@ -23,7 +49,7 @@ const nombreMesas = {
 };
 
 function mostrarSeccion(seccion) {
-
+    
     const secciones = document.querySelectorAll('.menu-section');
     secciones.forEach(sec => sec.style.display = 'none');
 
@@ -76,6 +102,29 @@ function addItem(nombre, precio) {
     const selectedTab = document.querySelector(`.mesa-tab:nth-child(${mesaSeleccionada})`);
     selectedTab.classList.add('mesa-tab-has-content');
 }
+
+function agregarExtra() {
+    const descripcionInput = document.getElementById('extraDescription');
+    const montoInput = document.getElementById('extraAmount');
+
+    const descripcion = descripcionInput.value;
+    const monto = parseFloat(montoInput.value);
+
+    if (descripcion && !isNaN(monto) && monto > 0) {
+        // Agrega el item 'extra' a la boleta
+        addItem(descripcion, monto);
+        
+        // Limpia los campos de entrada
+        descripcionInput.value = '';
+        montoInput.value = '';
+
+        // Actualiza la boleta
+        actualizarBoleta();
+    } else {
+        alert('Ingrese una descripción válida y un monto mayor a cero.');
+    }
+}
+
 
 function actualizarBoleta() {
     const listaPedido = document.getElementById('pedido-list');
@@ -196,9 +245,7 @@ async function generarRecibo() {
 
 
 function reiniciarPedido(numeroMesa) {
-
     pedidos[numeroMesa] = [];
-
     actualizarBoleta();
 }
 
@@ -210,6 +257,10 @@ function borrarElementos() {
     const confirmBorrar = confirm('¿Seguro que quieres borrar la boleta?');
     if (confirmBorrar) {
         reiniciarPedido(mesaSeleccionada);
+
+        // Desmarcar la pestaña de la mesa después de borrar la boleta
+        const selectedTab = document.querySelector(`.mesa-tab:nth-child(${mesaSeleccionada})`);
+        selectedTab.classList.remove('mesa-tab-has-content');
     }
 }
 
