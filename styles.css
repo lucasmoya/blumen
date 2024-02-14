@@ -99,7 +99,7 @@ flex-wrap: wrap; /* Asegura que los elementos se envuelvan cuando no hay suficie
 cursor: pointer;
 padding: 10px;
 background-color: #ddd;
-border: 1px solid #ccc;
+border: 2px solid #ccc;
 display: flex; /* Utiliza flexbox */
 align-items: center; /* Centra verticalmente el contenido */
 justify-content: center; /* Centra horizontalmente el contenido */
@@ -113,23 +113,15 @@ height: 100px; /* Establece la altura igual al ancho para hacerlos cuadrados */
 box-sizing: border-box; /* Asegura que el padding y el borde no afecten las dimensiones */
 }
 
-
-
-.mesa-tab-selected {
-border: 2px solid #000000; 
-}
-
 .tab-selected {
   border: 2px solid #000000;
 }
 
-.mesa-tab-selected {
-border: 2px solid #000000;
-}
-
 .mesa-tab-has-content {
 background-color: rgb(30, 211, 123); /* Verde */
-color: #fff; /* Texto blanco */
+color: #ffffff; /* Texto blanco */
+border: 2px solid rgb(27, 197, 115);
+/*border: 2px solid #000000; */
 }
 
 /*EXTRA*/

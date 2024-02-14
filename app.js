@@ -65,11 +65,7 @@ function mostrarSeccion(seccion) {
 
 function seleccionarMesa(numeroMesa) {
     const mesaTabs = document.querySelectorAll('.mesa-tab');
-    mesaTabs.forEach(tab => tab.classList.remove('mesa-tab-selected'));
-
     const selectedTab = document.querySelector(`.mesa-tab:nth-child(${numeroMesa})`);
-    selectedTab.classList.add('mesa-tab-selected');
-
     mesaSeleccionada = numeroMesa;
 
     if (!pedidos[numeroMesa]) {
